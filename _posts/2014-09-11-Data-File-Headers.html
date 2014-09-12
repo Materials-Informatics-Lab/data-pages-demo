@@ -1,0 +1,27 @@
+---
+layout: post
+title: Creating Header Files to Organically Track Metadata Growth
+---
+
+> This is a working draft.
+
+## Merging Data on Other Branches to Research Pages
+
+* Create JSON headers
+* Commit them to ``_data``
+* Command Line
+
+  ```
+  git checkout -b gh-pages
+  git remote add pages-template https://github.com/Materials-Informatics-Lab/research-pages.git
+  git fetch pages-template gh-pages
+  git merge --no-commit master
+  # Clean up files
+  git commit -m "Merge Data Files Headers into Research Pages"
+  git push origin gh-pages
+  ```
+
+## Ipython Notebook Driver
+
+<iframe src="http://nbviewer.ipython.org/github/Materials-Informatics-Lab/data-pages-demo/blob/master/Saving-Data-Files-JSON-header-to-Github.ipynb"
+    height="400" width="100%"></iframe>

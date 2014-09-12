@@ -11,15 +11,21 @@ title: Creating Header Files to Organically Track Metadata Growth
 * Commit them to ``_data``
 * Command Line
 
-{% highlight %}
-git checkout -b gh-pages
-git remote add pages-template https://github.com/Materials-Informatics-Lab/research-pages.git
-git fetch pages-template gh-pages
-git merge --no-commit master
-# Clean up files
-git commit -m "Merge Data Files Headers into Research Pages"
-git push origin gh-pages
-{% endhighlight %}
+```
+    git checkout -b gh-pages
+    git remote add pages-template https://github.com/Materials-Informatics-Lab/research-pages.git
+    git fetch pages-template gh-pages
+    git merge --no-commit master
+    # Clean up files
+    git commit -m "Merge Data Files Headers into Research Pages"
+    git push origin gh-pages
+```
+
+> If the code isn't formatted then check out the raw file on Github.
+
+* Modify _config
+
+
 
 ## Ipython Notebook Driver
 

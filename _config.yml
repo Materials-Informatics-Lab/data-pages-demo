@@ -3,8 +3,8 @@
 title: "My Blog"
 email: you@somewhere.com
 description: >
-  Tell us about your site
-baseurl: "/research-pages" # replace ``/research-pages`` with the name of the parents repository
+  To illustrate data sharing on Research Mini Sites.
+baseurl: "/data-pages-demo" # replace ``/research-pages`` with the name of the parents repository
 url: "Materials-Informatics-Lab.github.io" # replate ``Materials-Informatics-Lab`` with your Github username
 twitter_username: twitterhandle
 disqus: tonyfast
@@ -19,6 +19,6 @@ paginate: 5
 
 gh:
   user: Materials-Informatics-Lab
-  repo: research-pages
+  repo: data-pages-demo
   # Branch hosting Github pages
   branch: gh-pages

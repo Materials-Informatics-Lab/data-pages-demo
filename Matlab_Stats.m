@@ -39,6 +39,8 @@ for ff = 1 : numel(files)
                 file.name(end - ...
                     ([ numel( fileflag ) : -1 : 1 ] - 1)  ), ...
                 fileflag )
+            
+        disp( sprintf('Operating on %i of %i.', ff, numel(files) ) )
         
         data = loadjson( fullfile( data_dir, file.name ) );
         
@@ -52,32 +54,34 @@ for ff = 1 : numel(files)
        
         edges = binary_edge( image );
         
+        tic;
         [Stats, xx] = PairCorrelationFFT( image, [], ...
                             'display', false, ...
                             'cutoff', 20 ... Cutoff the stats a 20 pixels to use the computation of the SSA
                                 );
+        t= toc;
                             
         %% Stats vs xx is the Pair Correlation function
         % The derivative at t-->0 of the Pair Correlation function is
         % proportional to the Specific Surface Area with a scaling
         % variable.
-        % In 2-D, SSA = d(Stats)/d(xx) * (-1/4)
+        % In 2-D, SSA = d(Stats)/d(xx) / (-1/4)
         
         dstats = gradient( Stats );
-        data.('statistics_0x2D_ml').('SSA').value = -1*dstats(1)./4
+        data.('statistics_0x2D_ml').('SSA').value = -4*dstats(1);
         data.('statistics_0x2D_ml').('SSA').description = horzcat( ... 
             'Computed via the gradient of the pair correlation function using', ...
             'this reference <<http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.49.1716>>');
+        data.('statistics_0x2D_ml').('SSA').('time_0x2D_elapsed') = sprintf('%fs',t);
         
         
-        json = savejson( '',data)
+        json = savejson( '',data);
         json = minifyjson( json );
         
-%         fo = fopen( 'fullfile( data_dir, file.name )',
+        fo = fopen( fullfile( data_dir, file.name ), 'w')
+        fwrite( fo, json );
+        fclose(fo)
         
-        if ff  > 2
-            break
-        end
     end
     
 
